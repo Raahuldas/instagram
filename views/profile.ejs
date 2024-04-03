@@ -1,0 +1,85 @@
+<% include ./partials/header.ejs %>
+  <div class="w-full min-h-screen bg-zinc-900 text-white py-5">
+    <div class="nav flex justify-between items-center px-4">
+      <h3 class="text-lg">
+        <%= user.username %>
+      </h3>
+      <div class="icons flex gap-5">
+        <a href="/upload"><i class="text-[1.4rem] ri-add-box-line"></i></a>
+        <div class="relative inline-block text-left">
+          <div>
+            <button type="button"
+              class="inline-flex w-full justify-center gap-x-1.5 rounded-md px-1 py-2 text-sm font-medium text-white-900 shadow-sm "
+              id="menu-button" aria-expanded="true" aria-haspopup="true">
+              <i class="text-[1.4rem] ri-menu-line"></i>
+            </button>
+          </div>
+
+          <div
+            class="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+            id="dropdown-menu" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div class="py-1" role="none">
+              <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                id="menu-item-0">Settings</a>
+              <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                id="menu-item-1">Privacy</a>
+              <a href="/changepassword" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                id="menu-item-2">Change Password</a>
+              <form action="/logout">
+                <button type="submit" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem"
+                  tabindex="-1" id="menu-item-3">Logout</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="flex justify-between items-center pl-6 pr-[5vw] mt-8">
+      <div class="w-[19vw] h-[19vw] bg-sky-100 rounded-full overflow-hidden border border-zinc-300 border-2 "><img
+          src="./images/uploads/<%= user.profileimage %>" alt="image" class="w-full h-full"></div>
+      <div class="stats flex gap-5 items-center justify-between ml-2">
+        <div class="flex flex-col items-center justify-center">
+          <h3>6</h3>
+          <h4>Posts</h4>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <h3>1059</h3>
+          <h4>Followers</h4>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <h3>259</h3>
+          <h4>Following</h4>
+        </div>
+      </div>
+    </div>
+    <div class="dets px-6 mt-5">
+      <h3 class="text-lg mb-1">
+        <%= user.name %>
+      </h3>
+      <p class="text-xs tracking-tight opacity-50">
+        <%= user.bio %>
+      </p>
+    </div>
+    <div class="px-6 mt-5">
+      <a class="px-3 py-2 bg-zinc-800 text-xs rounded-md" href="/edit">Edit Profile</a>
+    </div>
+    <div class="posts w-full flex justify-start gap-1 py-2 mt-5 px-1 flex-wrap">
+      <% user.posts.reverse().map((item)=>{ %>
+        <div class="post w-[32.3%] h-[32.5vw] bg-sky-100 overflow-hidden">
+          <a href="/view/post/<%= item._id %>">
+            <img src="/images/uploads/<%= item.postimage %>" alt="post" class="w-full h-full object-cover">
+          </a>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('menu-button').addEventListener('click', function () {
+      var menu = document.getElementById('dropdown-menu');
+      menu.classList.toggle('hidden');
+    });
+
+  </script>
+  <% include ./partials/footer.ejs %>

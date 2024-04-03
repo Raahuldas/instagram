@@ -1,0 +1,22 @@
+.story::-webkit-scrollbar{
+  display: none;
+}
+
+a:focus {
+  outline: none !important;
+}
+
+
+@media (max-width:430px) {
+  .main-container{
+    width: 100%;
+  }
+}
+
+@media (min-width:431px) {
+  .main-container{
+    width: 425px;
+    margin: auto;
+  }
+}
+
