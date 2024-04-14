@@ -148,7 +148,7 @@ router.post('/changepassword',isLoggedIn,async function(req,res,next){
     }
     res.redirect("/profile");
   });
-})
+});
 
 // router.post('/changepassword', isLoggedIn, async function(req, res) {
 //   try {
